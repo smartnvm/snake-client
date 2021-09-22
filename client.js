@@ -6,10 +6,11 @@ stdin.setRawMode(true);
 
 
 // establishes a connection with the game server
+//135.23.223.133/50542
 const connect = function () {
 
   const conn = net.createConnection({
-    host: '10.0.2.15',// IP address here,
+    host: 'localhost',// IP address here,
     port: 50541// PORT number here,
   });
 
@@ -19,21 +20,25 @@ const connect = function () {
   conn.on('connect', (data) => {
     console.log("Halellujah!!!!!");
     console.log(data);
+    conn.write('Name: AAJ');
   })
-  
+
   conn.on('data', (data) => {
     console.log("DATA CAME IN!!!!!");
     console.log(data);
   })
-  
+
+  conn.write('data', (data) => {
+    console.log("DATA CAME IN!!!!!");
+    console.log(data);
+  })
+
+
 
   return conn;
 };
 
 
 
-console.log("Connecting ...");
-connect();
 
-
-module.exports =  {connect}
+module.exports = { connect }
